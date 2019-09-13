@@ -10,10 +10,10 @@ int main( int argc, char* argv[]) {
 		char *c = argv[1];
 		N = atoi(c);
 	}
-	printf("%d\n", N);
 
 	int pid0 = fork();
 	if (pid0 == 0){
+		//child 1
 		for (int i = 0; i < N; i++){
 			printf("This is a child process, my PID is %d, my parent PID is %d\n", getpid(), getppid());
 			sleep(2);
@@ -21,22 +21,25 @@ int main( int argc, char* argv[]) {
 	}else{
 		int pid1 = fork();
 		if (pid1 == 0){
-			for (int j = 0; j < N; j++){  
+			//child 2
+			for (int j = 0; j < N; j++){
 				printf("This is a child process, my PID is %d, my parent PID is %d\n", getpid(), getppid());
 				sleep(2);
 			}
 		}else{
 			int pid2 = fork();
 			if (pid2 == 0){
-				for (int k = 0; k < N; k++){  
+				//child 3
+				for (int k = 0; k < N; k++){
 					printf("This is a child process, my PID is %d, my parent PID is %d\n", getpid(), getppid());
     					sleep(2);
 				}
 			}else{
-				for (int l = 0; l < N; l++){  
+				for (int l = 0; l < N; l++){
+					//parent
 					printf("This is the main process, my PID is %d\n", getpid());
 					sleep(2);
-				}	
+				}
 			}
 		}
 	}

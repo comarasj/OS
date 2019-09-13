@@ -1,3 +1,7 @@
+//Operating Systems and Systems Programming EECE 4029
+//Homework 1 Part 2
+//Stephen Comarata
+//09/13/2019
 #include <stdio.h>
 #include <sys/types.h>
 #include <unistd.h>
@@ -9,12 +13,12 @@ int main(int argc, char* argv[]) {
 		return 0;
 	}else{
 		file_name = argv[1];
-		printf("%s\n", file_name);
 		processes(file_name);
 	}
 	return 0;
 
 }
+
 void processes(char* file_name ) {
 	int pid0 = fork();
 	if (pid0 == 0){
@@ -28,14 +32,17 @@ void processes(char* file_name ) {
 		}else{
 			int pid2 = fork();
 			if(pid2 == 0){
+				//child 3
 				execl("/bin/more", "more", file_name, (char*) NULL);
 			}else{
+				//parent
+				wait();
+				wait();
+				wait();
 				printf("This is the main process, my PID is %d\n", getpid());
-				wait();
-				wait();
-				wait();
 				printf("main process terminates\n");
 			}
 		}
 	}
 }
+
