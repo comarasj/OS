@@ -1,0 +1,3 @@
+Create a server program and a client program. 
+The client program reads a line from a  text file, converts everything to upper case letters, and send it to the server, using a named pipe. 
+It pauses for 1 second, and repeats the above process, until the end of file.
