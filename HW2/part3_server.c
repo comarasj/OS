@@ -14,10 +14,10 @@ int main( int argc, char* argv[]) {
 	fd = open(myfifo, O_RDONLY);
 	while(1) {
 		read(fd, line, sizeof(line));
-		printf("%s", line);
-		if (!strcmp(line, "Stop\n")){
+		if (!strcmp(line, "STOP\n")){
 			break;
 		}
+		printf("%s", line);
 	}
 	close(fd);
 	remove("tmp/myfifo");
